@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weone - Rent Fashion</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            background-color: #f5e8d3;
+            color: #5c4033;
+            font-size: 14px;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(232, 0, 0, 0.2);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e84c3d;
+        }
+
+        nav .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        nav .search-container i {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9b8a6f;
+        }
+
+        nav .search-container input {
+            padding: 6px 8px 6px 28px;
+            border-radius: 20px;
+            background-color: #f5e8d3;
+            border: none;
+            width: 100%;
+            max-width: 200px;
+            font-size: 12px;
+            color: #5c4033;
+        }
+
+        nav .search-container input::placeholder {
+            color: #9b8a6f;
+        }
+
+        nav .dm-icon i, nav .settings-icon i {
+            font-size: 20px;
+            color: #9b8a6f;
+        }
+
+        nav .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        nav .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 15px 60px;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        /* Feed (Home Page) */
+        .feed {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .feed .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feed .user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feed .user .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .feed .user .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feed .user .info p {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .feed .user .info small {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .feed .head i {
+            color: #9b8a6f;
+            font-size: 16px;
+        }
+
+        .feed .picture img {
+            width: 100%;
+            border-radius: 8px;
+            margin: 8px 0;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .feed .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .feed .action-buttons .reactions i {
+            font-size: 18px;
+            color: #9b8a6f;
+            margin-right: 12px;
+        }
+
+        .feed .action-buttons .bookmarks i {
+            font-size: 18px;
+            color: #e84c3d;
+            margin-left: 8px;
+        }
+
+        .feed .liked-by {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .feed .liked-by .profile-pic {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fff;
+            margin-left: -8px;
+        }
+
+        .feed .liked-by .profile-pic:first-child {
+            margin-left: 0;
+        }
+
+        .feed .liked-by .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feed .liked-by p {
+            font-size: 10px;
+            margin-left: 8px;
+        }
+
+        .feed .liked-by p span {
+            font-weight: bold;
+        }
+
+        .feed .caption p {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .feed .caption p span.hashtag {
+            color: #e84c3d;
+        }
+
+        .feed .stats {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .feed button {
+            width: 100%;
+            padding: 8px;
+            background-color: #e84c3d;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* Explore Page */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .explore-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .explore-item:hover {
+            box-shadow: 0 2px 4px rgba(232, 0, 0, 0.2);
+        }
+
+        .explore-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .explore-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 10px;
+            transition: opacity 0.2s ease;
+        }
+
+        .explore-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .explore-item .overlay p {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Profile Page */
+        .profile-header {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #f5e8d3;
+        }
+
+        .profile-header .top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .profile-header .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #e84c3d;
+        }
+
+        .profile-header .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-header .info h2 {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .profile-header .info p {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .profile-header .stats {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .profile-header .stats div {
+            flex: 1;
+        }
+
+        .profile-header .stats p {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-header .stats small {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .profile-grid .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .profile-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .profile-grid .grid-item:hover img {
+            box-shadow: 0 2px 4px rgba(232, 0, 0, 0.2);
+        }
+
+        .profile-grid .not-available .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* DM Page */
+        .dm-search-container {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .dm-search-container i {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9b8a6f;
+        }
+
+        .dm-search-container input {
+            padding: 8px 8px 8px 28px;
+            border-radius: 20px;
+            background-color: #f5e8d3;
+            border: none;
+            width: 100%;
+            font-size: 12px;
+            color: #5c4033;
+        }
+
+        .dm-search-container input::placeholder {
+            color: #9b8a6f;
+        }
+
+        .rented-items {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .rented-items h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rented-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .rented-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .rented-item .info p {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .rented-item .info small {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .message-threads {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .message-threads h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .message-thread {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5e8d3;
+        }
+
+        .message-thread:last-child {
+            border-bottom: none;
+        }
+
+        .message-thread .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .message-thread .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-thread .info {
+            flex-grow: 1;
+        }
+
+        .message-thread .info p {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .message-thread .info small {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        .message-thread .time {
+            font-size: 10px;
+            color: #9b8a6f;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 -2px 4px rgba(232, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .bottom-nav a i {
+            font-size: 20px;
+            color: #9b8a6f;
+        }
+
+        .bottom-nav a.active i {
+            color: #e84c3d;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="home" class="active">
+            <nav>
+                <a href="#home" class="logo">Weone</a>
+                <div class="search-container">
+                    <i class="uil uil-search"></i>
+                    <input type="search" placeholder="Search items...">
+                </div>
+                <div class="dm-icon">
+                    <a href="#messages" class="nav-link"><i class="uil uil-message"></i></a>
+                </div>
+            </nav>
+            <div class="feed">
+                <div class="head">
+                    <div class="user">
+                        <div class="profile-pic">
+                            <img src="https://images.summitmedia-digital.com/cosmo/images/2020/08/26/julia-barretto-profile-picture-idea-1598430021.jpg" alt="Lana Del Rey">
+                        </div>
+                        <div class="info">
+                            <p>Lana Del Rey</p>
+                            <small>2 minutes ago • ৳ 2000</small>
+                        </div>
+                    </div>
+                    <i class="uil uil-ellipsis-h"></i>
+                </div>
+                <div class="picture">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Bridal lehenga">
+                </div>
+                <div class="action-buttons">
+                    <div class="reactions">
+                        <i class="uil uil-heart"></i>
+                        <i class="uil uil-comment-dots"></i>
+                        <i class="uil uil-share"></i>
+                    </div>
+                    <div class="bookmarks">
+                        <i class="uil uil-plus-circle"></i>
+                        <i class="uil uil-bookmark-full"></i>
+                    </div>
+                </div>
+                <div class="liked-by">
+                    <div class="profile-pic">
+                        <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="Liker 1">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://images.pexels.com/photos/3444087/pexels-photo-3444087.jpeg" alt="Liker 2">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://www.datocms-assets.com/39109/1622554808-1622312687174978-ariana-grande.jpg" alt="Liker 3">
+                    </div>
+                    <p>Liked by <span>Selena Gomez</span> and <span>1,345 others</span></p>
+                </div>
+                <div class="caption">
+                    <p>Lana Del Rey Bridal lehenga for rent! <span class="hashtag">#wedding #bride</span></p>
+                </div>
+                <div class="stats">13 requests • 107 shares • 234 bookmarks</div>
+                <button>Request to Rent</button>
+            </div>
+
+            <div class="feed">
+                <div class="head">
+                    <div class="user">
+                        <div class="profile-pic">
+                            <img src="https://i.pinimg.com/originals/01/33/4e/01334e67646f08f7f23d89a202e570e0.jpg" alt="Bella Hadid">
+                        </div>
+                        <div class="info">
+                            <p>Bella Hadid</p>
+                            <small>1 hour ago • ৳ 100</small>
+                        </div>
+                    </div>
+                    <i class="uil uil-ellipsis-h"></i>
+                </div>
+                <div class="picture">
+                    <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Pink purse">
+                </div>
+                <div class="action-buttons">
+                    <div class="reactions">
+                        <i class="uil uil-heart"></i>
+                        <i class="uil uil-comment-dots"></i>
+                        <i class="uil uil-share"></i>
+                    </div>
+                    <div class="bookmarks">
+                        <i class="uil uil-plus-circle"></i>
+                        <i class="uil uil-bookmark-full"></i>
+                    </div>
+                </div>
+                <div class="liked-by">
+                    <div class="profile-pic">
+                        <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="Liker 1">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://images.girlslife.com/posts/041/41764/oliviarodrigo1.jpg" alt="Liker 2">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://i.pinimg.com/564x/84/3f/b1/843fb1ef384a0a97c99250d2dcf0e5a1.jpg" alt="Liker 3">
+                    </div>
+                    <p>Liked by <span>Ankita Khan</span> and <span>532 others</span></p>
+                </div>
+                <div class="caption">
+                    <p>Bella Hadid New pink purse from my collection! <span class="hashtag">#pink #purse</span></p>
+                </div>
+                <div class="stats">16 requests • 37 shares • 39 bookmarks</div>
+                <button>Request to Rent</button>
+            </div>
+
+            <div class="feed">
+                <div class="head">
+                    <div class="user">
+                        <div class="profile-pic">
+                            <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="Sumaya Akter">
+                        </div>
+                        <div class="info">
+                            <p>Sumaya Akter</p>
+                            <small>5 hours ago • ৳ 50</small>
+                        </div>
+                    </div>
+                    <i class="uil uil-ellipsis-h"></i>
+                </div>
+                <div class="picture">
+                    <img src="https://img.freepik.com/free-photo/still-life-aesthetic-earrings_23-2149649128.jpg" alt="Blue earrings">
+                </div>
+                <div class="action-buttons">
+                    <div class="reactions">
+                        <i class="uil uil-heart"></i>
+                        <i class="uil uil-comment-dots"></i>
+                        <i class="uil uil-share"></i>
+                    </div>
+                    <div class="bookmarks">
+                        <i class="uil uil-plus-circle"></i>
+                        <i class="uil uil-bookmark-full"></i>
+                    </div>
+                </div>
+                <div class="liked-by">
+                    <div class="profile-pic">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/5/5b/Taylor_Swift_-_Speak_Now_%28Taylor%27s_Version%29.png" alt="Liker 1">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://img.freepik.com/premium-vector/pretty-hijab-woman-side-profile-with-colorful-flower-bouquet_185694-1105.jpg" alt="Liker 2">
+                    </div>
+                    <div class="profile-pic">
+                        <img src="https://i.pinimg.com/564x/31/44/7e/31447e25b7bc3429f83520350ed13c15.jpg" alt="Liker 3">
+                    </div>
+                    <p>Liked by <span>Alia Rahman</span> and <span>74 others</span></p>
+                </div>
+                <div class="caption">
+                    <p>Sumaya Akter Blue earrings <span class="hashtag">#jwellary #earring</span></p>
+                </div>
+                <div class="stats">5 requests • 12 shares • 6 bookmarks</div>
+                <button>Request to Rent</button>
+            </div>
+        </section>
+
+        <section id="explore">
+            <nav>
+                <a href="#home" class="logo">Weone</a>
+                <div class="search-container">
+                    <i class="uil uil-search"></i>
+                    <input type="search" placeholder="Search items...">
+                </div>
+                <div class="dm-icon">
+                    <a href="#messages" class="nav-link"><i class="uil uil-message"></i></a>
+                </div>
+            </nav>
+            <div class="explore-grid">
+                <div class="explore-item">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Pink purse">
+                    <div class="overlay">
+                        <p>Pink purse • ৳ 100</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGRyZXNzfGVufDB8fDB8fHww" alt="Blue earrings">
+                    <div class="overlay">
+                        <p>Blue earrings • ৳ 50</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1673384389447-5a4364e7c93b?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://media.istockphoto.com/id/1126362690/photo/groom-footwear.webp?a=1&b=1&s=612x612&w=0&k=20&c=Q4HuyJ4MMtMBC4DMSWUhCPwAHyPllzuZTN_UPcX0Q58=" alt="Pink purse">
+                    <div class="overlay">
+                        <p>Pink purse • ৳ 100</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://img.freepik.com/free-photo/still-life-aesthetic-earrings_23-2149649128.jpg" alt="Blue earrings">
+                    <div class="overlay">
+                        <p>Blue earrings • ৳ 50</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGpld2Vscnl8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1671028365111-cec8e5a95a87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hvZXxlbnwwfHwwfHx8MA%3D%3D" alt="Pink purse">
+                    <div class="overlay">
+                        <p>Pink purse • ৳ 100</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1590166223826-12dee1677420?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGpld2Vscnl8ZW58MHx8MHx8fDA%3D" alt="Blue earrings">
+                    <div class="overlay">
+                        <p>Blue earrings • ৳ 50</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1746372283841-dbb3838f9935?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxlaGVuZ2F8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1695604461285-09f2cf47ec80?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNob2V8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1574847872646-abff244bbd87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGVoZW5nYXxlbnwwfHwwfHx8MA%3D%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1675186049409-f9f8f60ebb5e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZHJlc3N8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1572470176170-98fa8abcb741?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNhcmVlfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1683545929327-83a50bdd1e21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGFuamFiaXxlbnwwfHwwfHx8MA%3D%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://media.istockphoto.com/id/1394366993/photo/the-ring-is-made-of-yellow-and-blue-gemstones-on-a-womans-hand-elegant-and-beautiful.webp?a=1&b=1&s=612x612&w=0&k=20&c=xjD4J33dYPDCTmwl2b3bCB8lgu0MktMkCX7uFJkxkag=" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdhdGNofGVufDB8fDB8fHww" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2V8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Bridal lehenga">
+                    <div class="overlay">
+                        <p>Bridal lehenga • ৳ 2000</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="profile">
+            <nav>
+                <a href="#home" class="logo">Weone</a>
+                <div class="search-container">
+                    <i class="uil uil-search"></i>
+                    <input type="search" placeholder="Search items...">
+                </div>
+                <div class="settings-icon">
+                    <i class="uil uil-setting"></i>
+                </div>
+            </nav>
+            <div class="profile-header">
+                <div class="top">
+                    <div class="profile-pic">
+                        <img src="https://img.freepik.com/premium-vector/pretty-hijab-woman-side-profile-with-colorful-flower-bouquet_185694-1105.jpg" alt="Profile">
+                    </div>
+                    <div class="info">
+                        <h2>Anzum Shreya</h2>
+                        <p>@anzumshreya</p>
+                    </div>
+                </div>
+                <div class="stats">
+                    <div>
+                        <p>4</p>
+                        <small>Listings</small>
+                    </div>
+                    <div>
+                        <p>1.2k</p>
+                        <small>Followers</small>
+                    </div>
+                    <div>
+                        <p>350</p>
+                        <small>Following</small>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-grid">
+                <div class="grid-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1671028365111-cec8e5a95a87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hvZXxlbnwwfHwwfHx8MA%3D%3D" alt="Post 1">
+                </div>
+                <div class="grid-item not-available">
+                    <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Post 2">
+                    <div class="overlay">
+                        <p>Not Available</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://img.freepik.com/free-photo/still-life-aesthetic-earrings_23-2149649128.jpg" alt="Post 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Post 4">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/flagged/photo-1576572093163-83b5ad089423?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGRyZXNzfGVufDB8fDB8fHww" alt="Post 3">
+                </div>
+                <div class="grid-item not-available">
+                    <img src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGRyZXNzfGVufDB8fDB8fHww" alt="Post 4">
+                    <div class="overlay">
+                        <p>Not Available</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1529025530948-67e8a5c69b58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHB1cnNlfGVufDB8fDB8fHww" alt="Post 3">
+                </div>
+                <div class="grid-item">
+                    <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmVja2xhY2V8ZW58MHx8MHx8fDA%3D" alt="Post 4">
+                </div>
+            </div>
+        </section>
+
+        <section id="messages">
+            <nav>
+                <a href="#home" class="logo">Weone</a>
+                <div class="search-container">
+                    <i class="uil uil-search"></i>
+                    <input type="search" placeholder="Search items...">
+                </div>
+                <div class="dm-icon">
+                    <a href="#messages" class="nav-link"><i class="uil uil-message"></i></a>
+                </div>
+            </nav>
+            <div class="dm-search-container">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search messages...">
+            </div>
+            <div class="rented-items">
+                <h3>Active Rented Items</h3>
+                <div class="rented-item">
+                    <img src="https://t3.ftcdn.net/jpg/03/31/18/58/360_F_331185893_VcVvKhO46bKmqBf3oN6hqLu0aEXpvg4G.jpg" alt="Bridal lehenga">
+                    <div class="info">
+                        <p>Bridal lehenga</p>
+                        <small>Rented until Jul 5, 2025</small>
+                    </div>
+                </div>
+                <div class="rented-item">
+                    <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Pink purse">
+                    <div class="info">
+                        <p>Pink purse</p>
+                        <small>Rented until Jul 3, 2025</small>
+                    </div>
+                </div>
+            </div>
+            <div class="message-threads">
+                <h3>Messages</h3>
+                <div class="message-thread">
+                    <div class="profile-pic">
+                        <img src="https://images.summitmedia-digital.com/cosmo/images/2020/08/26/julia-barretto-profile-picture-idea-1598430021.jpg" alt="Lana Del Rey">
+                    </div>
+                    <div class="info">
+                        <p>Lana Del Rey</p>
+                        <small>Can you confirm the rental date?</small>
+                    </div>
+                    <div class="time">10:00 AM</div>
+                </div>
+                <div class="message-thread">
+                    <div class="profile-pic">
+                        <img src="https://i.pinimg.com/originals/01/33/4e/01334e67646f08f7f23d89a202e570e0.jpg" alt="Bella Hadid">
+                    </div>
+                    <div class="info">
+                        <p>Bella Hadid</p>
+                        <small>Is the purse available?</small>
+                    </div>
+                    <div class="time">Yesterday</div>
+                </div>
+                <div class="message-thread">
+                    <div class="profile-pic">
+                        <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="Sumaya Akter">
+                    </div>
+                    <div class="info">
+                        <p>Sumaya Akter</p>
+                        <small>Thanks for the quick response!</small>
+                    </div>
+                    <div class="time">Jun 28</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="bottom-nav">
+        <a href="#home" class="nav-link active"><i class="uil uil-home"></i></a>
+        <a href="#explore" class="nav-link"><i class="uil uil-compass"></i></a>
+        <a href="#upload" class="nav-link"><i class="uil uil-plus-circle"></i></a>
+        <a href="#notifications" class="nav-link"><i class="uil uil-bell"></i></a>
+        <a href="#profile" class="nav-link"><i class="uil uil-user"></i></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            function showSection(sectionId) {
+                // Hide all sections and remove active class from nav links
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Show the selected section and set the corresponding nav link as active
+                const targetSection = document.getElementById(sectionId);
+                const targetLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                if (targetSection && targetLink) {
+                    targetSection.classList.add('active');
+                    targetLink.classList.add('active');
+                }
+            }
+
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    showSection(sectionId);
+                });
+            });
+
+            // Initialize with home section active
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
