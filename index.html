@@ -7,8 +7,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#e84c3d">
     <title>RedDrobe</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#e84c3d">
     <link rel="icon" type="IMG_0587.png" href="IMG_0587.PNG">
-    <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/000000/clothes.png">
+    <link rel="apple-touch-icon" href="IMG_0587.PNG">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
@@ -19,12 +22,14 @@
             font-family: sans-serif;
             text-decoration: none;
             list-style: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: #f5e8d3;
             color: #5c4033;
             font-size: 16px;
+            overscroll-behavior: none;
         }
 
         /* Navbar */
@@ -1832,6 +1837,19 @@
 
             showSection('home');
         });
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+            console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+            console.log('Service Worker registration failed:', error);
+            });
+        });
+    }
     </script>
 </body>
 </html>
