@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weone - Rent Fashion</title>
+    <title>RedDrobe</title>
+    <link rel="icon" type="IMG_0587.png" href="IMG_0587.PNG">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
         * {
@@ -76,6 +77,17 @@
 
         nav .search-container input::placeholder {
             color: #9b8a6f;
+        }
+
+        nav .search-container button {
+            padding: 6px 12px;
+            margin-left: 8px;
+            background-color: #e84c3d;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
         }
 
         nav .dm-icon i, nav .settings-icon i {
@@ -241,6 +253,16 @@
             border-radius: 20px;
             font-size: 12px;
             margin-top: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .feed button:hover {
+            background-color: #c0392b;
+        }
+
+        .feed button.active {
+            background-color: #9b8a6f;
         }
 
         /* Explore Page */
@@ -255,6 +277,7 @@
             overflow: hidden;
             border-radius: 4px;
             transition: box-shadow 0.2s ease;
+            cursor: pointer;
         }
 
         .explore-item:hover {
@@ -290,6 +313,132 @@
         .explore-item .overlay p {
             font-weight: bold;
             text-align: center;
+        }
+
+        .filter-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-container select {
+            padding: 8px;
+            border-radius: 20px;
+            background-color: #f5e8d3;
+            border: none;
+            font-size: 12px;
+            color: #5c4033;
+            width: 115px;
+        }
+
+        .filter-container select:focus {
+            outline: none;
+            border: 1px solid #e84c3d;
+        }
+
+        .detail-view {
+            display: none;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .detail-view.active {
+            display: block;
+        }
+
+        .detail-view .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .detail-view .back-button i {
+            font-size: 18px;
+            color: #9b8a6f;
+        }
+
+        .detail-view .back-button span {
+            font-size: 12px;
+            color: #5c4033;
+        }
+
+        /* Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .popup-content h3 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .popup-content select {
+            padding: 8px;
+            border-radius: 20px;
+            background-color: #f5e8d3;
+            border: none;
+            font-size: 12px;
+            color: #5c4033;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .popup-content select:focus {
+            outline: none;
+            border: 1px solid #e84c3d;
+        }
+
+        .popup-content button {
+            padding: 8px 16px;
+            margin: 8px 4px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .popup-content .confirm-button {
+            background-color: #e84c3d;
+            color: #fff;
+        }
+
+        .popup-content .confirm-button:hover {
+            background-color: #c0392b;
+        }
+
+        .popup-content .cancel-button {
+            background-color: #9b8a6f;
+            color: #fff;
+        }
+
+        .popup-content .cancel-button:hover {
+            background-color: #7a6a55;
         }
 
         /* Profile Page */
@@ -393,6 +542,35 @@
         }
 
         /* DM Page */
+        .dm-tabs {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .dm-tabs button {
+            padding: 8px 16px;
+            background-color: #f5e8d3;
+            color: #5c4033;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .dm-tabs button.active {
+            background-color: #e84c3d;
+            color: #fff;
+        }
+
+        .dm-tabs button:hover {
+            background-color: #e0d2b4;
+        }
+
         .dm-search-container {
             position: relative;
             margin-bottom: 12px;
@@ -420,14 +598,19 @@
             color: #9b8a6f;
         }
 
-        .rented-items {
+        .rented-items, .rented-out-items {
             background-color: #fff;
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 12px;
+            display: none;
         }
 
-        .rented-items h3 {
+        .rented-items.active, .rented-out-items.active {
+            display: block;
+        }
+
+        .rented-items h3, .rented-out-items h3 {
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 8px;
@@ -461,6 +644,11 @@
             background-color: #fff;
             border-radius: 8px;
             padding: 12px;
+            display: none;
+        }
+
+        .message-threads.active {
+            display: block;
         }
 
         .message-threads h3 {
@@ -693,146 +881,492 @@
                 <a href="#home" class="logo"><img src="IMG_05872.webp" alt="GoDrobe Logo"></a>
                 <div class="search-container">
                     <i class="uil uil-search"></i>
-                    <input type="search" placeholder="Search items...">
+                    <input type="search" id="explore-search" placeholder="Search items...">
+                    <button id="search-button">Search</button>
                 </div>
                 <div class="dm-icon">
                     <a href="#messages" class="nav-link"><i class="uil uil-message"></i></a>
                 </div>
             </nav>
+            <div class="filter-container">
+                <select id="size-filter">
+                    <option value="">All Sizes</option>
+                    <option value="XS">Extra Small</option>
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="XXXL">XXXL</option>
+                </select>
+                <select id="chest-filter">
+                    <option value="">All Chest Sizes</option>
+                    <option value="38">38 inches</option>
+                    <option value="40">40 inches</option>
+                    <option value="42">42 inches</option>
+                    <option value="44">44 inches</option>
+                    <option value="46">46 inches</option>
+                    <option value="48">48 inches</option>
+                    <option value="50">50 inches</option>
+                </select>
+                <select id="waist-filter">
+                    <option value="">All Waist Sizes</option>
+                    <option value="32">32 inches</option>
+                    <option value="34">34 inches</option>
+                    <option value="36">36 inches</option>
+                    <option value="38">38 inches</option>
+                    <option value="40">40 inches</option>
+                    <option value="42">42 inches</option>
+                    <option value="44">44 inches</option>
+                </select>
+                <select id="inseam-filter">
+                    <option value="">All Inseam Lengths</option>
+                    <option value="30">30 inches</option>
+                    <option value="32">32 inches</option>
+                    <option value="34">34 inches</option>
+                    <option value="36">36 inches</option>
+                    <option value="38">38 inches</option>
+                    <option value="40">40 inches</option>
+                </select>
+            </div>
+            <div class="detail-view">
+                <div class="back-button">
+                    <i class="uil uil-arrow-left"></i>
+                    <span>Back to Explore</span>
+                </div>
+                <div class="feed">
+                    <div class="head">
+                        <div class="user">
+                            <div class="profile-pic">
+                                <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="User">
+                            </div>
+                            <div class="info">
+                                <p id="detail-user">User</p>
+                                <small id="detail-info">5 hours ago • ৳ 1500</small>
+                            </div>
+                        </div>
+                        <i class="uil uil-ellipsis-h"></i>
+                    </div>
+                    <div class="picture">
+                        <img id="detail-image" src="" alt="Item">
+                    </div>
+                    <div class="action-buttons">
+                        <div class="reactions">
+                            <i class="uil uil-heart"></i>
+                            <i class="uil uil-comment-dots"></i>
+                            <i class="uil uil-share"></i>
+                        </div>
+                        <div class="bookmarks">
+                            <i class="uil uil-plus-circle"></i>
+                            <i class="uil uil-bookmark-full"></i>
+                        </div>
+                    </div>
+                    <div class="liked-by">
+                        <div class="profile-pic">
+                            <img src="https://images.pexels.com/photos/3454298/pexels-photo-3454298.jpeg" alt="Liker 1">
+                        </div>
+                        <div class="profile-pic">
+                            <img src="https://images.girlslife.com/posts/041/41764/oliviarodrigo1.jpg" alt="Liker 2">
+                        </div>
+                        <div class="profile-pic">
+                            <img src="https://i.pinimg.com/564x/84/3f/b1/843fb1ef384a0a97c99250d2dcf0e5a1.jpg" alt="Liker 3">
+                        </div>
+                        <p>Liked by <span id="detail-liker">Someone</span> and <span>532 others</span></p>
+                    </div>
+                    <div class="caption">
+                        <p id="detail-caption">Item description <span class="hashtag">#fashion #rent</span></p>
+                    </div>
+                    <div class="stats">5 requests • 12 shares • 6 bookmarks</div>
+                    <button id="request-rent-button">Request to Rent</button>
+                </div>
+            </div>
             <div class="explore-grid">
-                <div class="explore-item">
+                <div class="explore-item" data-name="Bridal lehenga" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
                     <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
+                <div class="explore-item" data-name="Pink purse" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Bella Hadid" data-price="100" data-liker="Ankita Khan" data-caption="New pink purse from my collection! #pink #purse">
                     <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Pink purse">
                     <div class="overlay">
                         <p>Pink purse • ৳ 100</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGRyZXNzfGVufDB8fDB8fHww" alt="Blue earrings">
-                    <div class="overlay">
-                        <p>Blue earrings • ৳ 50</p>
-                    </div>
-                </div>
-                <div class="explore-item">
-                    <img src="https://plus.unsplash.com/premium_photo-1673384389447-5a4364e7c93b?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridal lehenga">
-                    <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
-                    </div>
-                </div>
-                <div class="explore-item">
-                    <img src="https://media.istockphoto.com/id/1126362690/photo/groom-footwear.webp?a=1&b=1&s=612x612&w=0&k=20&c=Q4HuyJ4MMtMBC4DMSWUhCPwAHyPllzuZTN_UPcX0Q58=" alt="Pink purse">
-                    <div class="overlay">
-                        <p>Pink purse • ৳ 100</p>
-                    </div>
-                </div>
-                <div class="explore-item">
+                <div class="explore-item" data-name="Blue earrings" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Sumaya Akter" data-price="50" data-liker="Alia Rahman" data-caption="Blue earrings #jwellary #earring">
                     <img src="https://img.freepik.com/free-photo/still-life-aesthetic-earrings_23-2149649128.jpg" alt="Blue earrings">
                     <div class="overlay">
                         <p>Blue earrings • ৳ 50</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGpld2Vscnl8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Bridal lehenga" data-size="L" data-chest="42" data-waist="36" data-inseam="34" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
+                    <img src="https://plus.unsplash.com/premium_photo-1673384389447-5a4364e7c93b?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://plus.unsplash.com/premium_photo-1671028365111-cec8e5a95a87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hvZXxlbnwwfHwwfHx8MA%3D%3D" alt="Pink purse">
+                <div class="explore-item" data-name="Groom footwear" data-size="L" data-chest="42" data-waist="36" data-inseam="34" data-user="Sumaya Akter" data-price="100" data-liker="Alia Rahman" data-caption="Polished groom shoes #mensfashion #footwear">
+                    <img src="https://media.istockphoto.com/id/1126362690/photo/groom-footwear.webp?a=1&b=1&s=612x612&w=0&k=20&c=Q4HuyJ4MMtMBC4DMSWUhCPwAHyPllzuZTN_UPcX0Q58=" alt="Groom footwear">
                     <div class="overlay">
-                        <p>Pink purse • ৳ 100</p>
+                        <p>Groom footwear • ৳ 100</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1590166223826-12dee1677420?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGpld2Vscnl8ZW58MHx8MHx8fDA%3D" alt="Blue earrings">
+                <div class="explore-item" data-name="Jewelry" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Elegant jewelry #accessories #jewelry">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Jewelry">
                     <div class="overlay">
-                        <p>Blue earrings • ৳ 50</p>
+                        <p>Jewelry • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1746372283841-dbb3838f9935?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxlaGVuZ2F8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Shoes" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Bella Hadid" data-price="100" data-liker="Ankita Khan" data-caption="Stylish shoes #footwear #fashion">
+                    <img src="https://plus.unsplash.com/premium_photo-1695604461285-09f2cf47ec80?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Shoes">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Shoes • ৳ 100</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://plus.unsplash.com/premium_photo-1695604461285-09f2cf47ec80?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNob2V8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Jewelry" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Sumaya Akter" data-price="50" data-liker="Alia Rahman" data-caption="Delicate jewelry #accessories #jewelry">
+                    <img src="https://images.unsplash.com/photo-1590166223826-12dee1677420?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Jewelry">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Jewelry • ৳ 50</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1574847872646-abff244bbd87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bGVoZW5nYXxlbnwwfHwwfHx8MA%3D%3D" alt="Bridal lehenga">
-                    <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
-                    </div>
-                </div>
-                <div class="explore-item">
-                    <img src="https://plus.unsplash.com/premium_photo-1675186049409-f9f8f60ebb5e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZHJlc3N8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Bridal lehenga" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
+                    <img src="https://images.unsplash.com/photo-1746372283841-dbb3838f9935?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1572470176170-98fa8abcb741?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNhcmVlfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Bridal lehenga" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
+                    <img src="https://images.unsplash.com/photo-1574847872646-abff244bbd87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1683545929327-83a50bdd1e21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGFuamFiaXxlbnwwfHwwfHx8MA%3D%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Dress" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Sumaya Akter" data-price="2000" data-liker="Alia Rahman" data-caption="Elegant dress #fashion #dress">
+                    <img src="https://plus.unsplash.com/premium_photo-1675186049409-f9f8f60ebb5e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Dress">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Dress • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://media.istockphoto.com/id/1394366993/photo/the-ring-is-made-of-yellow-and-blue-gemstones-on-a-womans-hand-elegant-and-beautiful.webp?a=1&b=1&s=612x612&w=0&k=20&c=xjD4J33dYPDCTmwl2b3bCB8lgu0MktMkCX7uFJkxkag=" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Saree" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Traditional saree #fashion #saree">
+                    <img src="https://images.unsplash.com/photo-1572470176170-98fa8abcb741?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Saree">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Saree • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdhdGNofGVufDB8fDB8fHww" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Panjabi" data-size="L" data-chest="42" data-waist="36" data-inseam="34" data-user="John Doe" data-price="2000" data-liker="James Smith" data-caption="Festive panjabi #mensfashion #panjabi">
+                    <img src="https://images.unsplash.com/photo-1683545929327-83a50bdd1e21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Panjabi">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Panjabi • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Ring" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Sumaya Akter" data-price="2000" data-liker="Alia Rahman" data-caption="Stunning ring #jewelry #accessories">
+                    <img src="https://media.istockphoto.com/id/1394366993/photo/the-ring-is-made-of-yellow-and-blue-gemstones-on-a-womans-hand-elegant-and-beautiful.webp?a=1&b=1&s=612x612&w=0&k=20&c=xjD4J33dYPDCTmwl2b3bCB8lgu0MktMkCX7uFJkxkag=" alt="Ring">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Ring • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnfGVufDB8fDB8fHww" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Watch" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Bella Hadid" data-price="2000" data-liker="Ankita Khan" data-caption="Luxury watch #accessories #watch">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Watch">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Watch • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
+                <div class="explore-item" data-name="Bag" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Chic bag #accessories #bag">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Bag">
+                    <div class="overlay">
+                        <p>Bag • ৳ 2000</p>
+                    </div>
+                </div>
+                <!-- <div class="explore-item" data-name="Bag" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Bella Hadid" data-price="2000" data-liker="Ankita Khan" data-caption="Stylish bag #accessories #bag">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Bag">
+                    <div class="overlay">
+                        <p>Bag • ৳ 2000</p>
+                    </div>
+                </div> -->
+                <div class="explore-item" data-name="Bridal lehenga" data-size="L" data-chest="42" data-waist="36" data-inseam="34" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
                     <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNob2V8ZW58MHx8MHx8fDA%3D" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Shoes" data-size="M" data-chest="40" data-waist="34" data-inseam="32" data-user="Sumaya Akter" data-price="2000" data-liker="Alia Rahman" data-caption="Trendy shoes #footwear #fashion">
+                    <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Shoes">
+                    <div class="overlay">
+                        <p>Shoes • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Bridal lehenga" data-size="S" data-chest="38" data-waist="32" data-inseam="30" data-user="Lana Del Rey" data-price="2000" data-liker="Selena Gomez" data-caption="Bridal lehenga for rent! #wedding #bride">
+                    <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Bridal lehenga">
                     <div class="overlay">
                         <p>Bridal lehenga • ৳ 2000</p>
                     </div>
                 </div>
-                <div class="explore-item">
-                    <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Bridal lehenga">
+                <div class="explore-item" data-name="Shoes" data-size="L" data-chest="42" data-waist="36" data-inseam="34" data-user="Bella Hadid" data-price="2000" data-liker="Ankita Khan" data-caption="Premium shoes #footwear #fashion">
+                    <img src="https://plus.unsplash.com/premium_photo-1695604461285-09f2cf47ec80?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Shoes">
                     <div class="overlay">
-                        <p>Bridal lehenga • ৳ 2000</p>
+                        <p>Shoes • ৳ 2000</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="L" data-chest="44" data-waist="34" data-inseam="32" data-user="John Doe" data-price="300" data-liker="James Smith" data-caption="Classic navy suit #mensfashion #suit">
+                    <img src="https://images.unsplash.com/flagged/photo-1553642618-de0381320ff3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 300</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XL" data-chest="46" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://images.unsplash.com/photo-1649899111001-f585ce5ec178?q=80&w=745&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div> 
+                <div class="explore-item" data-name="Man suit" data-size="L" data-chest="44" data-waist="34" data-inseam="34" data-user="Chris Evans" data-price="400" data-liker="Mark Taylor" data-caption="Sharp charcoal suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1473323058/photo/smiling-elegant-mid-adult-male-manager-dressed-in-blue-suit-clasping-his-hands-while-standing.jpg?s=612x612&w=0&k=20&c=pZEs9Pc3H0ivM24FWwBypKeviAGz5_imatnTKfq5Z6Q=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="400" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/2219323564/photo/portrait-of-a-young-guy-in-a-black-suit.jpg?s=612x612&w=0&k=20&c=s5zHDUxpgg7U3CmIpTvbiOzq64EfOc77e9OX_Kzi7PA=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div> 
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/2192659319/photo/teenage-boy-wearing-a-suit.jpg?s=612x612&w=0&k=20&c=tgZ2m_Xj4Y8PbPDUF1qE1IQiCCwUefARfeDwTQ9j7Yo=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div> 
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="400" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/638162356/photo/businesss-man-in-suit-and-tie-on-white-background.jpg?s=612x612&w=0&k=20&c=oYnfUV9fV-lrT_Ak2fqSPYsG2ZPBZiK8qyeu5z9nDv4=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div> 
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1968172300/photo/portrait-of-an-enterprising-latino-businessman-in-formal-attire.jpg?s=612x612&w=0&k=20&c=i1oel9YgsoezTEwF6sQJWFWi5991XlTRByUHPyk7ziI=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
                     </div>
                 </div>
 
+
+
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="300" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/185123049/photo/standing-senior-man-in-suit.jpg?s=612x612&w=0&k=20&c=xPozqwxkbOKzlYeD7LtCfmzJ9BK8vwzqioRCBTPAvac=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 300</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="450" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/161960152/photo/very-overweight-cheerful-businessman.jpg?s=612x612&w=0&k=20&c=7O6-XdtbbpkqyHtKP7CY3HTUOeUpyzfkwsbIhxNCjp8=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 450</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="500" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/504684595/photo/how-do-i-look.jpg?s=612x612&w=0&k=20&c=Ych4Fd_m8Iv6Yk06kKFFZ9L9cxECd3kQ_j5b8_Og8Kc=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/496036098/photo/jolly-fat-man-in-tuxedo-and-bow-tie-shows-emotions.jpg?s=612x612&w=0&k=20&c=Qd4geuyPGaU6YoD014_XB0Dya24HCy6vsv5YCT52Yx8=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="350" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/177761325/photo/obese-businessman-making-a-point.jpg?s=612x612&w=0&k=20&c=1vRdDpjaIZ-tBTp8jEqXIgQqdXyKdJpBzqtSfQ25WfY=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 350</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/177797670/photo/elegant-fat-man-in-a-black-suit-shows-thumb-up.jpg?s=612x612&w=0&k=20&c=bswyX3eiuLl6D4ASMHxvaMh3Cw9xYkHkwMPcOzc9w9I=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="400" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962939786/photo/overweight-businessman-in-suit-working-with-smartphone-and-laptop-at-workplace.jpg?s=612x612&w=0&k=20&c=hKMbxnlAldJHZlYE54mPZJsbmfzRMEdePbCS_VAc7P0=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="500" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962943958/photo/back-view-of-overweight-businessman-in-suit-reading-document-at-window-in-office.jpg?s=612x612&w=0&k=20&c=Y21WiUlcwWuyMkShWnZms4EXMIJvAPtDHXcqjBsT2YA=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962941016/photo/fat-businessman-talking-on-smartphone-in-office.jpg?s=612x612&w=0&k=20&c=DKrhalYRq4Z1YU_ycvkKCj8F162JznX5ZAYmJREz5L8=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="450" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1251695884/photo/middle-aged-businessman-with-face-mask-taking-phone-call-on-the-way-to-work.jpg?s=612x612&w=0&k=20&c=svmX0TsgilZYpmHQlG1wxZlNWXmpeQ0UHLvopoPma7I=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 450</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="500" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962939140/photo/overweight-businessman-talking-on-smartphone-in-office.jpg?s=612x612&w=0&k=20&c=gfb5W7AvaJjnWNU_9fTz6WmYNpAyOodD3YwmglKzEaM=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/664599040/photo/frontline-company-employee-focused-on-the-task.jpg?s=612x612&w=0&k=20&c=bCJRMK0d4EBkyCZEL9WTtLrHZkP9BVvzM-jUf05P7js=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="350" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1356262036/photo/businessman-with-face-mask-walking-home-from-work.jpg?s=612x612&w=0&k=20&c=_vTHqB0osPE6CHemnpO5S1Uu3cLIoVtgsmsTja0rYoI=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 350</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/107217830/photo/mature-businessman-dancing-portrait.jpg?s=612x612&w=0&k=20&c=tFgQyxlZgSHPAU90GGnSiwt5jdttiOSuXbXW9s9ui8k=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="400" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1094679384/photo/african-american-businessman-with-large-build-smiling.jpg?s=612x612&w=0&k=20&c=4dQglGFeZLBWM_6jCu9t7IqMouW86QE5-afdZ1xEoo4=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/512962415/photo/adult-businessman.jpg?s=2048x2048&w=is&k=20&c=Vpio_bYWTMv-5wbm0r_i9wQ4mx5HVr5h9D0qfuQVewg=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="500" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962943958/photo/back-view-of-overweight-businessman-in-suit-reading-document-at-window-in-office.jpg?s=612x612&w=0&k=20&c=Y21WiUlcwWuyMkShWnZms4EXMIJvAPtDHXcqjBsT2YA=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div><div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="600" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/962941016/photo/fat-businessman-talking-on-smartphone-in-office.jpg?s=612x612&w=0&k=20&c=DKrhalYRq4Z1YU_ycvkKCj8F162JznX5ZAYmJREz5L8=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 600</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="XXL" data-chest="50" data-waist="32" data-inseam="30" data-user="David Wilson" data-price="450" data-liker="Thomas Lee" data-caption="Modern grey suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1251695884/photo/middle-aged-businessman-with-face-mask-taking-phone-call-on-the-way-to-work.jpg?s=612x612&w=0&k=20&c=svmX0TsgilZYpmHQlG1wxZlNWXmpeQ0UHLvopoPma7I=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 450</p>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="explore-item" data-name="Man suit" data-size="L" data-chest="44" data-waist="34" data-inseam="34" data-user="Chris Evans" data-price="450" data-liker="Mark Taylor" data-caption="Sharp charcoal suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/180720141/photo/portrait-of-a-senior-businessman.jpg?s=612x612&w=0&k=20&c=zSjjm1gJyzoe-M6hyR6J-CVIjm38TLfdeFNs4QLi-28=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 450</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1201437847/photo/good-looking-male-business-professional-in-studio.jpg?s=612x612&w=0&k=20&c=xWZCmQDVE-56daMr_GwppH12xmfW_bANidnq6CT5ExI=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1367361034/photo/portrait-of-winner.jpg?s=612x612&w=0&k=20&c=81DJ4B1U1VOS8K_qlkoYpCN1i6URGiHG09jDTDlLXjQ=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1355624344/photo/business-conversation-man-mobile-phone-discussing-news-concept.jpg?s=612x612&w=0&k=20&c=m6YhwN5p0Xe0WGxoLiGQI0tIJkwKBClMwzhvKRg2h5Q=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/2157036490/photo/businessman-adult-portrait-occupation-concept.jpg?s=612x612&w=0&k=20&c=1HasantBjvApxi4pwpS9mkXpha-stSfrJLvAFTB0qmM=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="400" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1472653518/photo/successful-businessman-in-formal-wear-standing-with-folded-arms-in-modern-coworking-office.jpg?s=612x612&w=0&k=20&c=_UazBZ4jF2P04oo6kijo8iK6Lg4MhKNKAJXgMoqAeWA=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1294441231/photo/my-mindset-made-it-happen.jpg?s=612x612&w=0&k=20&c=BbA9G_IwyvSSqZodGZhirpi17TObUjJ4TcCb5yOBMXg=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/2013175055/photo/portrait-of-senior-man-using-phone.jpg?s=612x612&w=0&k=20&c=eXFOEaiyv2b3Tn5j9y9Wp5ddC1QYDZpKosZnPLXAyFs=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+
+
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="350" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1306495763/photo/confident-handsome-mature-businessman-standing-with-arms-crossed-isolated-in-white-background.jpg?s=612x612&w=0&k=20&c=RDoGXUYhuXyvrLLlrqwh2KOtorUYI2MQjmOgbwshWKc=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 350</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/506428793/photo/you-clean-up-nice.jpg?s=612x612&w=0&k=20&c=66P2927KoMV_UFRo5g-k--iVtfbX5pXYz4ubXBoblVs=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/623214996/photo/dressed-in-his-business-best.jpg?s=612x612&w=0&k=20&c=3S9RMlktjCjFOhffIu5F_PIwUdrDYQ41A9E5eVPH3pY=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/154955498/photo/business-man-smiling-with-arms-crossed.jpg?s=612x612&w=0&k=20&c=0d6LSPwZ77wHeKUEYr_JRbRV52ud6_eswXkGtVbKM1o=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="550" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1371920690/photo/smiling-businessman-with-smart-phone-and-cup.jpg?s=612x612&w=0&k=20&c=4JsZ_vm6-3_a3h-jcOYni0L9vilJXADUDFNHKEH_ntQ=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 550</p>
+                    </div>
+                </div>
+
+
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="500" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1423646305/photo/young-business-man-wearing-a-suit-posing-on-a-white-background.jpg?s=612x612&w=0&k=20&c=7LchGhBDmDy1YUxRuj4o6xiOPauXbOouCNIhd_gLNSM=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 500</p>
+                    </div>
+                </div>
+                <div class="explore-item" data-name="Man suit" data-size="S" data-chest="42" data-waist="36" data-inseam="34" data-user="Michael Brown" data-price="400" data-liker="Robert Johnson" data-caption="Elegant black suit #mensfashion #suit">
+                    <img src="https://media.istockphoto.com/id/1471823445/photo/fashion-trendy-and-black-man-model-in-a-suit-on-chair-in-the-studio-with-elegant-fancy-and.jpg?s=612x612&w=0&k=20&c=GBZEIixtgfMvE3HmGBD5UbZzL4H2X7W9SV7lPXSuyRs=" alt="Man suit">
+                    <div class="overlay">
+                        <p>Man suit • ৳ 400</p>
+                    </div>
+                </div>
+                
             </div>
         </section>
 
@@ -859,7 +1393,7 @@
                 </div>
                 <div class="stats">
                     <div>
-                        <p>4</p>
+                        <p>8</p>
                         <small>Listings</small>
                     </div>
                     <div>
@@ -874,13 +1408,13 @@
             </div>
             <div class="profile-grid">
                 <div class="grid-item">
-                    <img src="https://plus.unsplash.com/premium_photo-1671028365111-cec8e5a95a87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hvZXxlbnwwfHwwfHx8MA%3D%3D" alt="Post 1">
+                    <img src="https://plus.unsplash.com/premium_photo-1671028365111-cec8e5a95a87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Post 1">
                 </div>
                 <div class="grid-item not-available">
                     <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Post 2">
-                    <div class="overlay">
+                    <!-- <div class="overlay">
                         <p>Not Available</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="grid-item">
                     <img src="https://img.freepik.com/free-photo/still-life-aesthetic-earrings_23-2149649128.jpg" alt="Post 3">
@@ -889,19 +1423,19 @@
                     <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Post 4">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/flagged/photo-1576572093163-83b5ad089423?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGRyZXNzfGVufDB8fDB8fHww" alt="Post 3">
+                    <img src="https://images.unsplash.com/flagged/photo-1576572093163-83b5ad089423?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Post 3">
                 </div>
                 <div class="grid-item not-available">
-                    <img src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGRyZXNzfGVufDB8fDB8fHww" alt="Post 4">
-                    <div class="overlay">
+                    <img src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Post 4">
+                    <!-- <div class="overlay">
                         <p>Not Available</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1529025530948-67e8a5c69b58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHB1cnNlfGVufDB8fDB8fHww" alt="Post 3">
+                    <img src="https://images.unsplash.com/photo-1529025530948-67e8a5c69b58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Post 3">
                 </div>
                 <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmVja2xhY2V8ZW58MHx8MHx8fDA%3D" alt="Post 4">
+                    <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Post 4">
                 </div>
             </div>
         </section>
@@ -917,28 +1451,15 @@
                     <a href="#messages" class="nav-link"><i class="uil uil-message"></i></a>
                 </div>
             </nav>
+            <div class="dm-tabs">
+                <button id="messages-tab" class="active">Messages</button>
+                <button id="rented-tab">Rented</button>
+            </div>
             <div class="dm-search-container">
                 <i class="uil uil-search"></i>
                 <input type="search" placeholder="Search messages...">
             </div>
-            <div class="rented-items">
-                <h3>Active Rented Items</h3>
-                <div class="rented-item">
-                    <img src="https://media.istockphoto.com/id/1213797478/photo/young-indian-woman-in-bridal-wear-jewelry-and-make-up.jpg?s=612x612&w=0&k=20&c=iZhg6GdG0-3NcxhzWZs5xEKeZEOam_KSOPNPQ6TXsBM=" alt="Bridal lehenga">
-                    <div class="info">
-                        <p>Bridal lehenga</p>
-                        <small>Rented until Jul 5, 2025</small>
-                    </div>
-                </div>
-                <div class="rented-item">
-                    <img src="https://img.freepik.com/premium-photo/ladies-luggage-shoulder-bag-handbag-luxury-bag-rendering-advertising-rendering-background_327903-737911.jpg" alt="Pink purse">
-                    <div class="info">
-                        <p>Pink purse</p>
-                        <small>Rented until Jul 3, 2025</small>
-                    </div>
-                </div>
-            </div>
-            <div class="message-threads">
+            <div class="message-threads active">
                 <h3>Messages</h3>
                 <div class="message-thread">
                     <div class="profile-pic">
@@ -971,6 +1492,29 @@
                     <div class="time">Jun 28</div>
                 </div>
             </div>
+            <div class="rented-items">
+                <h3>Rented Items</h3>
+                <div id="rented-items-list">
+                    <!-- Dynamically added rented items will appear here -->
+                </div>
+            </div>
+            <div class="rented-out-items">
+                <h3>Rented Out Items</h3>
+                <div class="rented-item">
+                    <img src="https://images.unsplash.com/photo-1529025530948-67e8a5c69b58?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Dress">
+                    <div class="info">
+                        <p>Dress</p>
+                        <small>Rented out until Jul 10, 2025</small>
+                    </div>
+                </div>
+                <div class="rented-item">
+                    <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0" alt="Necklace">
+                    <div class="info">
+                        <p>Necklace</p>
+                        <small>Rented out until Jul 8, 2025</small>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -982,13 +1526,107 @@
         <a href="#profile" class="nav-link"><i class="uil uil-user"></i></a>
     </div>
 
+    <div id="rental-popup" class="popup">
+        <div class="popup-content">
+            <h3>Select Rental Details</h3>
+            <select id="rental-day">
+                <option value="">Select Day</option>
+                <!-- Dynamically populated in JavaScript -->
+            </select>
+            <select id="rental-start-time">
+                <option value="">Select Start Time</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+            </select>
+            <select id="rental-end-time">
+                <option value="">Select End Time</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+            </select>
+            <select id="payment-method">
+                <option value="">Select Payment Method</option>
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+            </select>
+            <button class="confirm-button">Confirm</button>
+            <button class="cancel-button">Cancel</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section');
+            const searchInput = document.getElementById('explore-search');
+            const searchButton = document.getElementById('search-button');
+            const sizeFilter = document.getElementById('size-filter');
+            const chestFilter = document.getElementById('chest-filter');
+            const waistFilter = document.getElementById('waist-filter');
+            const inseamFilter = document.getElementById('inseam-filter');
+            const exploreGrid = document.querySelector('.explore-grid');
+            const exploreItems = exploreGrid.querySelectorAll('.explore-item');
+            const detailView = document.querySelector('.detail-view');
+            const backButton = document.querySelector('.detail-view .back-button');
+            const detailImage = document.getElementById('detail-image');
+            const detailUser = document.getElementById('detail-user');
+            const detailInfo = document.getElementById('detail-info');
+            const detailLiker = document.getElementById('detail-liker');
+            const detailCaption = document.getElementById('detail-caption');
+            const requestRentButton = document.getElementById('request-rent-button');
+            const messagesTab = document.getElementById('messages-tab');
+            const rentedTab = document.getElementById('rented-tab');
+            const messageThreads = document.querySelector('.message-threads');
+            const rentedItems = document.querySelector('.rented-items');
+            const rentedOutItems = document.querySelector('.rented-out-items');
+            const rentedItemsList = document.getElementById('rented-items-list');
+            const rentalPopup = document.getElementById('rental-popup');
+            const rentalDay = document.getElementById('rental-day');
+            const rentalStartTime = document.getElementById('rental-start-time');
+            const rentalEndTime = document.getElementById('rental-end-time');
+            const paymentMethod = document.getElementById('payment-method');
+            const confirmButton = rentalPopup.querySelector('.confirm-button');
+            const cancelButton = rentalPopup.querySelector('.cancel-button');
+
+            let rentedItemsData = [];
+            let currentItem = null;
+
+            // Populate rental days (next 30 days from July 10, 2025)
+            function populateRentalDays() {
+                const today = new Date('2025-07-10');
+                for (let i = 0; i < 30; i++) {
+                    const date = new Date(today);
+                    date.setDate(today.getDate() + i);
+                    const dateString = date.toISOString().split('T')[0];
+                    const option = document.createElement('option');
+                    option.value = dateString;
+                    option.textContent = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                    rentalDay.appendChild(option);
+                }
+            }
 
             function showSection(sectionId) {
-                // Hide all sections and remove active class from nav links
                 sections.forEach(section => {
                     section.classList.remove('active');
                 });
@@ -996,16 +1634,131 @@
                     link.classList.remove('active');
                 });
 
-                // Show the selected section and set the corresponding nav link as active
                 const targetSection = document.getElementById(sectionId);
                 const targetLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (targetSection && targetLink) {
                     targetSection.classList.add('active');
                     targetLink.classList.add('active');
                 }
+
+                if (sectionId === 'explore') {
+                    resetExplorePage();
+                }
+
+                if (sectionId === 'messages') {
+                    showMessages();
+                }
             }
 
-            // Handle navigation clicks
+            function resetExplorePage() {
+                searchInput.value = '';
+                sizeFilter.value = '';
+                chestFilter.value = '';
+                waistFilter.value = '';
+                inseamFilter.value = '';
+                exploreGrid.style.display = 'grid';
+                detailView.classList.remove('active');
+                exploreItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                requestRentButton.classList.remove('active');
+                requestRentButton.textContent = 'Request to Rent';
+            }
+
+            function filterItems() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const size = sizeFilter.value;
+                const chest = chestFilter.value;
+                const waist = waistFilter.value;
+                const inseam = inseamFilter.value;
+
+                exploreItems.forEach(item => {
+                    const itemName = item.dataset.name.toLowerCase();
+                    const itemSize = item.dataset.size;
+                    const itemChest = item.dataset.chest;
+                    const itemWaist = item.dataset.waist;
+                    const itemInseam = item.dataset.inseam;
+
+                    const matchesSearch = searchTerm === '' || itemName.includes(searchTerm);
+                    const matchesSize = size === '' || itemSize === size;
+                    const matchesChest = chest === '' || itemChest === chest;
+                    const matchesWaist = waist === '' || itemWaist === waist;
+                    const matchesInseam = inseam === '' || itemInseam === inseam;
+
+                    if (matchesSearch && matchesSize && matchesChest && matchesWaist && matchesInseam) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            function showDetailView(item) {
+                exploreGrid.style.display = 'none';
+                detailView.classList.add('active');
+                detailImage.src = item.querySelector('img').src;
+                detailImage.alt = item.querySelector('img').alt;
+                detailUser.textContent = item.dataset.user;
+                detailInfo.textContent = `5 hours ago • ৳ ${item.dataset.price}`;
+                detailLiker.textContent = item.dataset.liker;
+                detailCaption.innerHTML = `${item.dataset.caption}`;
+                requestRentButton.dataset.itemName = item.dataset.name;
+                requestRentButton.dataset.itemImage = item.querySelector('img').src;
+                currentItem = item;
+                requestRentButton.classList.remove('active');
+                requestRentButton.textContent = 'Request to Rent';
+                if (rentedItemsData.some(rented => rented.name === item.dataset.name)) {
+                    requestRentButton.classList.add('active');
+                    requestRentButton.textContent = 'Rented';
+                }
+            }
+
+            function showMessages() {
+                messagesTab.classList.add('active');
+                rentedTab.classList.remove('active');
+                messageThreads.classList.add('active');
+                rentedItems.classList.remove('active');
+                rentedOutItems.classList.remove('active');
+            }
+
+            function showRented() {
+                messagesTab.classList.remove('active');
+                rentedTab.classList.add('active');
+                messageThreads.classList.remove('active');
+                rentedItems.classList.add('active');
+                rentedOutItems.classList.add('active');
+            }
+
+            function addRentedItem(itemName, itemImage, day, startTime, endTime, paymentMethod) {
+                if (!rentedItemsData.some(item => item.name === itemName)) {
+                    rentedItemsData.push({ name: itemName, image: itemImage, day, startTime, endTime, paymentMethod });
+                    const rentedItem = document.createElement('div');
+                    rentedItem.classList.add('rented-item');
+                    rentedItem.innerHTML = `
+                        <img src="${itemImage}" alt="${itemName}">
+                        <div class="info">
+                            <p>${itemName}</p>
+                            <small>Rented for ${new Date(day).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} from ${startTime} to ${endTime} (${paymentMethod})</small>
+                        </div>
+                    `;
+                    rentedItemsList.appendChild(rentedItem);
+                    requestRentButton.classList.add('active');
+                    requestRentButton.textContent = 'Rented';
+                }
+            }
+
+            function showRentalPopup() {
+                rentalPopup.style.display = 'flex';
+                rentalDay.value = '';
+                rentalStartTime.value = '';
+                rentalEndTime.value = '';
+                paymentMethod.value = '';
+            }
+
+            function hideRentalPopup() {
+                rentalPopup.style.display = 'none';
+            }
+
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1014,7 +1767,64 @@
                 });
             });
 
-            // Initialize with home section active
+            searchButton.addEventListener('click', () => {
+                exploreGrid.style.display = 'grid';
+                detailView.classList.remove('active');
+                filterItems();
+            });
+
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value === '') {
+                    resetExplorePage();
+                }
+            });
+
+            exploreItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    showDetailView(item);
+                });
+            });
+
+            backButton.addEventListener('click', () => {
+                exploreGrid.style.display = 'grid';
+                detailView.classList.remove('active');
+            });
+
+            sizeFilter.addEventListener('change', filterItems);
+            chestFilter.addEventListener('change', filterItems);
+            waistFilter.addEventListener('change', filterItems);
+            inseamFilter.addEventListener('change', filterItems);
+
+            messagesTab.addEventListener('click', showMessages);
+            rentedTab.addEventListener('click', showRented);
+
+            requestRentButton.addEventListener('click', () => {
+                if (!requestRentButton.classList.contains('active')) {
+                    showRentalPopup();
+                }
+            });
+
+            confirmButton.addEventListener('click', () => {
+                const day = rentalDay.value;
+                const startTime = rentalStartTime.value;
+                const endTime = rentalEndTime.value;
+                const selectedPaymentMethod = paymentMethod.value;
+
+                if (day && startTime && endTime && startTime < endTime && selectedPaymentMethod) {
+                    const itemName = requestRentButton.dataset.itemName;
+                    const itemImage = requestRentButton.dataset.itemImage;
+                    addRentedItem(itemName, itemImage, day, startTime, endTime, selectedPaymentMethod);
+                    hideRentalPopup();
+                } else {
+                    alert('Please select a valid day, time range (start time must be before end time), and payment method.');
+                }
+            });
+
+            cancelButton.addEventListener('click', hideRentalPopup);
+
+            // Populate rental days on load
+            populateRentalDays();
+
             showSection('home');
         });
     </script>
