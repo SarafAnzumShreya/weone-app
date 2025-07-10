@@ -14,6 +14,14 @@
             font-family: sans-serif;
             text-decoration: none;
             list-style: none;
+            -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+            -webkit-user-select: none; /* Prevents selection highlights */
+            user-select: none; /* Prevents selection highlights */
+        }
+
+        *:focus, *:active {
+            outline: none; /* Removes default focus outline */
+            box-shadow: none; /* Removes any focus shadow */
         }
 
         body {
@@ -47,6 +55,7 @@
             opacity: 0;
             pointer-events: none;
         }
+
 
         /* Navbar */
         nav {
