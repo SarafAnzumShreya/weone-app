@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedDrobe</title>
-    <link rel="icon" type="IMG_0587.png" href=IMG_0587.PNG">
+    <link rel="icon" type="image/png" href="IMG_0587.PNG">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
         * {
@@ -19,7 +19,33 @@
         body {
             background-color: #f5e8d3;
             color: #5c4033;
-            font-size: 16px;
+            font-size: 20px;
+        }
+
+        /* Splash Page */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5e8d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        #splash img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         /* Navbar */
@@ -43,7 +69,7 @@
         }
 
         nav .logo img {
-            height: 35px; 
+            height: 35px;
             width: auto;
             object-fit: contain;
         }
@@ -71,7 +97,7 @@
             border: none;
             width: 100%;
             max-width: 200px;
-            font-size: 12px;
+            font-size: 16px;
             color: #5c4033;
         }
 
@@ -86,12 +112,12 @@
             color: #fff;
             border: none;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 16px;
             cursor: pointer;
         }
 
         nav .dm-icon i, nav .settings-icon i {
-            font-size: 20px;
+            font-size: 24px;
             color: #9b8a6f;
         }
 
@@ -156,17 +182,17 @@
 
         .feed .user .info p {
             font-weight: bold;
-            font-size: 12px;
+            font-size: 16px;
         }
 
         .feed .user .info small {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
         .feed .head i {
             color: #9b8a6f;
-            font-size: 16px;
+            font-size: 20px;
         }
 
         .feed .picture img {
@@ -185,13 +211,13 @@
         }
 
         .feed .action-buttons .reactions i {
-            font-size: 18px;
+            font-size: 22px;
             color: #9b8a6f;
             margin-right: 12px;
         }
 
         .feed .action-buttons .bookmarks i {
-            font-size: 18px;
+            font-size: 22px;
             color: #e84c3d;
             margin-left: 8px;
         }
@@ -222,7 +248,7 @@
         }
 
         .feed .liked-by p {
-            font-size: 10px;
+            font-size: 14px;
             margin-left: 8px;
         }
 
@@ -231,7 +257,7 @@
         }
 
         .feed .caption p {
-            font-size: 12px;
+            font-size: 16px;
             margin-bottom: 4px;
         }
 
@@ -240,7 +266,7 @@
         }
 
         .feed .stats {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
@@ -251,7 +277,7 @@
             color: #fff;
             border: none;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 16px;
             margin-top: 8px;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -262,7 +288,7 @@
         }
 
         .feed button.active {
-            background-color: #9b8a6f;
+            background-color: #c0392b;
         }
 
         /* Explore Page */
@@ -302,7 +328,7 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 10px;
+            font-size: 14px;
             transition: opacity 0.2s ease;
         }
 
@@ -332,7 +358,7 @@
             border: none;
             font-size: 12px;
             color: #5c4033;
-            width: 115px;
+            width: 105px;
         }
 
         .filter-container select:focus {
@@ -361,12 +387,12 @@
         }
 
         .detail-view .back-button i {
-            font-size: 18px;
+            font-size: 22px;
             color: #9b8a6f;
         }
 
         .detail-view .back-button span {
-            font-size: 12px;
+            font-size: 16px;
             color: #5c4033;
         }
 
@@ -394,7 +420,7 @@
         }
 
         .popup-content h3 {
-            font-size: 14px;
+            font-size: 18px;
             margin-bottom: 12px;
         }
 
@@ -403,7 +429,7 @@
             border-radius: 20px;
             background-color: #f5e8d3;
             border: none;
-            font-size: 12px;
+            font-size: 16px;
             color: #5c4033;
             width: 100%;
             margin-bottom: 12px;
@@ -419,7 +445,7 @@
             margin: 8px 4px;
             border: none;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 16px;
             cursor: pointer;
         }
 
@@ -472,12 +498,12 @@
         }
 
         .profile-header .info h2 {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
         }
 
         .profile-header .info p {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
@@ -493,12 +519,12 @@
         }
 
         .profile-header .stats p {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: bold;
         }
 
         .profile-header .stats small {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
@@ -536,7 +562,7 @@
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 10px;
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
         }
@@ -557,7 +583,7 @@
             color: #5c4033;
             border: none;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
@@ -565,10 +591,6 @@
         .dm-tabs button.active {
             background-color: #e84c3d;
             color: #fff;
-        }
-
-        .dm-tabs button:hover {
-            background-color: #e0d2b4;
         }
 
         .dm-search-container {
@@ -590,7 +612,7 @@
             background-color: #f5e8d3;
             border: none;
             width: 100%;
-            font-size: 12px;
+            font-size: 16px;
             color: #5c4033;
         }
 
@@ -611,7 +633,7 @@
         }
 
         .rented-items h3, .rented-out-items h3 {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 8px;
         }
@@ -631,12 +653,12 @@
         }
 
         .rented-item .info p {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: bold;
         }
 
         .rented-item .info small {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
@@ -652,7 +674,7 @@
         }
 
         .message-threads h3 {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 8px;
         }
@@ -687,17 +709,17 @@
         }
 
         .message-thread .info p {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: bold;
         }
 
         .message-thread .info small {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
         .message-thread .time {
-            font-size: 10px;
+            font-size: 14px;
             color: #9b8a6f;
         }
 
@@ -715,7 +737,7 @@
         }
 
         .bottom-nav a i {
-            font-size: 20px;
+            font-size: 24px;
             color: #9b8a6f;
         }
 
@@ -725,6 +747,9 @@
     </style>
 </head>
 <body>
+    <div id="splash">
+        <img src="IMG_05872.webp" alt="GoDrobe Logo">
+    </div>
     <main>
         <section id="home" class="active">
             <nav>
@@ -1576,6 +1601,22 @@
     </div>
 
     <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash');
+            if (!sessionStorage.getItem('splashShown')) {
+                // Ensure splash is visible initially
+                splash.classList.remove('hidden');
+                // Hide splash after 2 seconds
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                    // Mark splash as shown for this session
+                    sessionStorage.setItem('splashShown', 'true');
+                }, 2000); // 2000ms = 2 seconds
+            } else {
+                // Keep splash hidden if already shown
+                splash.classList.add('hidden');
+            }
+        });
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section');
